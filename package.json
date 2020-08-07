@@ -24,8 +24,15 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.30",
+        "@fortawesome/free-brands-svg-icons": "^5.14.0",
+        "@fortawesome/free-regular-svg-icons": "^5.14.0",
+        "@fortawesome/free-solid-svg-icons": "^5.14.0",
+        "@fortawesome/vue-fontawesome": "^0.1.10",
         "@inertiajs/inertia": "^0.1.9",
         "@inertiajs/inertia-vue": "^0.1.4",
+        "scroll-to-element": "^2.0.3",
+        "v-clipboard": "^2.2.3",
         "vue-meta": "^2.4.0"
     }
 }

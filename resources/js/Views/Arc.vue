@@ -1,10 +1,13 @@
 <template>
-    <div class="container">
+    <div class="container" id="clipboard">
         <div class="row justify-content-center" v-for="episode in arc.episodes" :key="episode.id">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card mb-4" :id="'episode-' + episode.id">
                     <div class="card-header">
                         {{ episode.title }}
+                        <div class="float-right">
+                            <a :href="'#' + episode.id" @click="copyAnchor(episode.id)">#</a>
+                        </div>
                     </div>
 
                     <div class="card-body p-0">
@@ -20,6 +23,7 @@
 
 <script>
     import Layout from "./Layout";
+    const scrollToElement = require('scroll-to-element');
 
     export default {
         props: ['arc'],
@@ -52,6 +56,11 @@
                         `linear-gradient(45deg, ${color})`
                     );
                 }
+            },
+
+            copyAnchor(episodeId) {
+                this.$clipboard(this.$route('arc', {id: this.arc.id}) + '#' + episodeId);
+                scrollToElement('#episode-' + episodeId);
             },
         }
     }

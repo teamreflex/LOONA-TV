@@ -12,14 +12,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link" href="/">Arcs</a>-->
-<!--                        </li>-->
+                        <!-- // -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="https://github.com/teamreflex/LOONA-TV">
+                                <fa-icon :icon="['fab', 'github']" />
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="https://twitter.com/Reflexgg">
+                                <fa-icon :icon="['fab', 'twitter']" />
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

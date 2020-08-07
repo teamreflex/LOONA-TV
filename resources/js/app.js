@@ -2,6 +2,11 @@ require('./bootstrap');
 
 import { InertiaApp } from '@inertiajs/inertia-vue';
 import VueMeta from 'vue-meta';
+import Clipboard from 'v-clipboard';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 window.Vue = require('vue');
 
 Vue.use(InertiaApp);
@@ -9,7 +14,13 @@ Vue.use(VueMeta, {
     refreshOnceOnNavigation: true,
     keyName: 'meta',
 });
+Vue.use(Clipboard);
 
+// fontawesome icons
+library.add(faTwitter, faGithub);
+Vue.component('fa-icon', FontAwesomeIcon);
+
+// setup ziggy
 Vue.prototype.$route = (...args) => route(...args).url();
 
 // load components
