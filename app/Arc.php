@@ -10,6 +10,7 @@ class Arc extends Model
     protected $fillable = [
         'name',
         'color',
+        'order',
     ];
 
     /**

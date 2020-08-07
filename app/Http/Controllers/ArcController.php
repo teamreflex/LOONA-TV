@@ -17,7 +17,7 @@ class ArcController extends Controller
     public function index(): Response
     {
         return Inertia::render('Home', [
-            'arcs' => Arc::all(),
+            'arcs' => Arc::orderBy('order', 'asc')->get(),
         ]);
     }
 
