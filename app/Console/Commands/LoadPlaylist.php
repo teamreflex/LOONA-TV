@@ -149,21 +149,25 @@ class LoadPlaylist extends Command
      */
     protected function fetchArc(int $episode): Arc
     {
-        $arc = null;
+        $arcName = null;
+        $arcColor = null;
         foreach (config('episodes.mapping') as $name=>$arc) {
             $checkSingle = fn ($episode, $arc) => $episode >= $arc[0] && $episode <= $arc[1];
             $checkArray = static function ($episode, $arc) use ($checkSingle) {
                 return in_array(true, array_map(fn($arr) => $checkSingle($episode, $arr), $arc), true);
             };
 
-            if ((is_array($arc[0]) && $checkArray($episode, $arc)) || $checkSingle($episode, $arc)) {
-                $arc = $name;
+            $episodes = $arc['episodes'] ?? $arc;
+            if ((is_array($episodes[0]) && $checkArray($episode, $episodes)) || $checkSingle($episode, $episodes)) {
+                $arcName = $name;
+                $arcColor = $arc['color'] ?? null;
                 break;
             }
         }
 
         return Arc::firstOrCreate([
-            'name' => $arc,
+            'name' => $arcName,
+            'color' => $arcColor,
         ]);
     }
 }

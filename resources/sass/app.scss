@@ -6,3 +6,38 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// glowing nav
+:root {
+    --glow-color: linear-gradient(45deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000);
+}
+
+.nav-glow:before,
+.nav-glow:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background: var(--glow-color);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: animate 40s linear infinite;
+}
+
+.nav-glow:after {
+    filter: blur(10px);
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 300% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}

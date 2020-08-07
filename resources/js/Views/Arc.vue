@@ -31,5 +31,28 @@
                 title: this.arc.name,
             };
         },
+
+        created() {
+            this.setColor();
+        },
+
+        methods: {
+            setColor() {
+                let color = this.arc.color
+                if (color) {
+                    // because gradients don't work with single colors
+                    // and i can't be bothered switching it to anything else but a gradient
+                    if (! color.includes(',')) {
+                        color = `${color}, ${color}`;
+                    }
+
+                    let root = document.documentElement;
+                    root.style.setProperty(
+                        '--glow-color',
+                        `linear-gradient(45deg, ${color})`
+                    );
+                }
+            },
+        }
     }
 </script>

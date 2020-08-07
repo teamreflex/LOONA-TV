@@ -2,25 +2,70 @@
 
 return [
     'mapping' => [
-        'Heejin' => [1, 18],
-        'Hyunjin' => [19, 38],
-        'Haseul' => [39, 58],
-        'Yeojin' => [59, 78],
-        '1/3' => [
-            [79, 100],
-            [113, 122],
+        'Heejin' => [
+            'color' => '#F4028E',
+            'episodes' => [1, 18],
         ],
-        'Vivi' => [101, 112],
-        'Kim Lip' => [123, 142],
-        'Jinsoul' => [143, 162],
-        'Choerry' => [163, 182],
-        'Odd Eye Circle' => [183, 224],
-        'Yves' => [225, 244],
-        'Chuu' => [245, 264],
-        'Go Won' => [265, 284],
+        'Hyunjin' => [
+            'color' => '#FFCB07',
+            'episodes' => [19, 38],
+        ],
+        'Haseul' => [
+            'color' => '#01954A',
+            'episodes' => [39, 58],
+        ],
+        'Yeojin' => [
+            'color' => '#F47021',
+            'episodes' => [59, 78],
+        ],
+        '1/3' => [
+            'color' => '#F4028E, #FFCB07, #01954A, #F4A1B5, #F4028E',
+            'episodes' => [
+                [79, 100],
+                [113, 122],
+            ],
+        ],
+        'Vivi' => [
+            'color' => '#F4A1B5',
+            'episodes' => [101, 112],
+        ],
+        'Kim Lip' => [
+            'color' => '#EB1326',
+            'episodes' => [123, 142],
+        ],
+        'Jinsoul' => [
+            'color' => '#1313D6',
+            'episodes' => [143, 162],
+        ],
+        'Choerry' => [
+            'color' => '#7632A0',
+            'episodes' => [163, 182],
+        ],
+        'Odd Eye Circle' => [
+            'color' => '#EB1326, #1313D6, #7632A0, #EB1326',
+            'episodes' => [183, 224],
+        ],
+        'Yves' => [
+            'color' => '#7A0332',
+            'episodes' => [225, 244],
+        ],
+        'Chuu' => [
+            'color' => '#F7917E',
+            'episodes' => [245, 264],
+        ],
+        'Go Won' => [
+            'color' => '#39BB9D',
+            'episodes' => [265, 284],
+        ],
         'Cinema Theory' => [285, 315],
-        'Olivia Hye' => [316, 335],
-        'yyxy' => [336, 355],
+        'Olivia Hye' => [
+            'color' => '#787A7D',
+            'episodes' => [316, 335],
+        ],
+        'yyxy' => [
+            'color' => '#7A0332, #F7917E, #39BB9D, #787A7D, #7A0332',
+            'episodes' => [336, 355],
+        ],
         'Line & Up' => [356, 375],
         'favOriTe & Hi High' => [376, 426],
         'LOONAbirth' => [427, 446],
