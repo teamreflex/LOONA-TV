@@ -18,7 +18,7 @@ class LoadPlaylist extends Command
      *
      * @var string
      */
-    protected $signature = 'ltv:playlist {--r|reverse} {--c|--create} {playlist}';
+    protected $signature = 'ltv:playlist {--r|reverse} {--c|--create} {--a|--add} {playlist}';
 
     /**
      * The console command description.
@@ -90,6 +90,33 @@ class LoadPlaylist extends Command
                 'color' => $this->ask('Arc color?'),
                 'order' => (int) $this->ask('Arc order?'),
             ]);
+        }
+
+        if ($this->option('add')) {
+            $this->info('Adding playlist into separate arcs...');
+
+            $availableArcs = Arc::all();
+            $items->each(function (PlaylistItem $video, int $index) use ($availableArcs) {
+                $this->info("Processing video: {$video->title}");
+                $name = $this->choice('Select an arc to add to', $availableArcs->pluck('name')->all());
+
+                $this->info($name);
+                $arc = $availableArcs->firstWhere('name', $name);
+                if (! $arc) {
+                    $this->error('Invalid arc.');
+                    return 1;
+                }
+
+                Episode::firstOrCreate([
+                    'title' => $video->title,
+                    'videoId' => $video->id,
+                    'arc_id' => $arc->id,
+                ]);
+
+                $this->info("Processed: {$video->title}, moving on...");
+            });
+
+            return 0;
         }
 
         $this->save($items, $arc ?? null);
