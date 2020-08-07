@@ -125,8 +125,7 @@ class LoadPlaylist extends Command
         $bar->start();
 
         $videos->each(function (PlaylistItem $video) use ($bar) {
-            // i really need to learn regex
-            $episodeId = (int) substr(explode(' ', $video->title)[1], 1);
+            $episodeId = $this->parseEpisodeId($video->title);
             $arc = $this->fetchArc($episodeId);
 
             Episode::firstOrCreate([
@@ -139,6 +138,17 @@ class LoadPlaylist extends Command
         });
 
         $bar->finish();
+    }
+
+    /**
+     * I really need to learn regex
+     *
+     * @param string $title
+     * @return int
+     */
+    protected function parseEpisodeId(string $title): int
+    {
+        return (int) substr(explode(' ', $title)[1], 1);
     }
 
     /**
