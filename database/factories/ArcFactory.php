@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Arc::class, function (Faker $faker) {
     return [
-        //
+        'name' => $faker->title,
+        'color' => $faker->hexColor,
     ];
 });
