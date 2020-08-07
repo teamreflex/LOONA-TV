@@ -79,6 +79,10 @@ class LoadPlaylist extends Command
             }
         }
 
+        if ($this->option('reverse')) {
+            $items = $items->reverse();
+        }
+
         $this->save($items);
         return 0;
     }
