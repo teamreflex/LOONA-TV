@@ -2,12 +2,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">LOONA TV</div>
-
-                    <div class="card-body">
-                        Welcome to LOONA TV!
-                    </div>
+                <div class="list-group">
+                    <inertia-link
+                        :href="$route('arc', {id: arc.id})"
+                        v-for="arc in arcs"
+                        :key="arc.id"
+                        class="list-group-item list-group-item-action"
+                    >{{ arc.name }}</inertia-link>
                 </div>
             </div>
         </div>
@@ -18,6 +19,8 @@
     import Layout from "./Layout";
 
     export default {
+        props: ['arcs'],
+
         layout: Layout,
 
         meta: {
