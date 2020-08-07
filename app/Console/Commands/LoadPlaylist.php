@@ -18,7 +18,7 @@ class LoadPlaylist extends Command
      *
      * @var string
      */
-    protected $signature = 'ltv:playlist {--r|reverse} {playlist}';
+    protected $signature = 'ltv:playlist {--r|reverse} {--c|--create} {playlist}';
 
     /**
      * The console command description.
@@ -83,7 +83,16 @@ class LoadPlaylist extends Command
             $items = $items->reverse();
         }
 
-        $this->save($items);
+        if ($this->option('create')) {
+            $this->info('Creating a new arc...');
+            $arc = Arc::create([
+                'name' => $this->ask('Arc name?', ''),
+                'color' => $this->ask('Arc color?'),
+                'order' => (int) $this->ask('Arc order?'),
+            ]);
+        }
+
+        $this->save($items, $arc ?? null);
         return 0;
     }
 
@@ -116,20 +125,21 @@ class LoadPlaylist extends Command
      * Save the playlist to the database.
      *
      * @param Collection $videos
+     * @param Arc|null $arc
      */
-    protected function save(Collection $videos): void
+    protected function save(Collection $videos, ?Arc $arc = null): void
     {
         $this->info("Processing {$videos->count()} episodes...");
 
         $bar = $this->output->createProgressBar($videos->count());
         $bar->start();
 
-        $videos->each(function (PlaylistItem $video) use ($bar) {
+        $videos->each(function (PlaylistItem $video, int $index) use ($bar, $arc) {
             $episodeId = $this->parseEpisodeId($video->title);
-            $arc = $this->fetchArc($episodeId);
+            $arc ??= $this->fetchArc($episodeId);
 
             Episode::firstOrCreate([
-                'title' => "#{$episodeId}",
+                'title' => $episodeId ? "#{$episodeId}" : '#' . ($index + 1),
                 'videoId' => $video->id,
                 'arc_id' => $arc->id,
             ]);
