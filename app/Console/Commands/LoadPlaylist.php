@@ -100,7 +100,6 @@ class LoadPlaylist extends Command
                 $this->info("Processing video: {$video->title}");
                 $name = $this->choice('Select an arc to add to', $availableArcs->pluck('name')->all());
 
-                $this->info($name);
                 $arc = $availableArcs->firstWhere('name', $name);
                 if (! $arc) {
                     $this->error('Invalid arc.');
